@@ -1,3 +1,9 @@
+
+[![Arduino CI](https://github.com/RobTillaart/PCF8591/workflows/Arduino%20CI/badge.svg)](https://github.com/marketplace/actions/arduino_ci)
+[![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)](https://github.com/RobTillaart/PCF8591/blob/master/LICENSE)
+[![GitHub release](https://img.shields.io/github/release/RobTillaart/PCF8591.svg?maxAge=3600)](https://github.com/RobTillaart/PCF8591/releases)
+
+
 # PCF8591
 
 Arduino Library for PCF8591 I2C 4 channel 8 bit ADC + 1 channel 8 bit DAC
@@ -26,8 +32,8 @@ First tests shows it is 2.6 x faster than 4 individual reads.
 
 - **PCF8591(const uint8_t address)** constructor with I2C address, default is 0x48
 - **begin(uint8_t sda, uint8_t scl, uint8_t val = 0)** set wire pins for ESP series.   
-Also set initial value for the DAC.
-- **begin(uint8_t val = 0)** Set initial value for the DAC.
+Also set initial value for the DAC. Returns **true** if successful.
+- **begin(uint8_t val = 0)** Set initial value for the DAC. Returns **true** if successful.
 - **isConnected()** test to see if chip can be reached.
 
 #### ADC part

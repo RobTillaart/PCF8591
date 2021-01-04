@@ -2,13 +2,14 @@
 //    FILE: PCF8591.cpp
 //  AUTHOR: Rob Tillaart
 //    DATE: 2020-03-12
-// VERSION: 0.0.2
+// VERSION: 0.1.0
 // PURPOSE: I2C PCF8591 library for Arduino
 //     URL: https://github.com/RobTillaart/PCF8591
 //
-// HISTORY:
-// 0.0.1    2020-03-12 initial version
-// 0.0.2    2020-07-22 testing, refactor, documentation and examples 
+//  HISTORY:
+//  0.0.1  2020-03-12  initial version
+//  0.0.2  2020-07-22  testing, refactor, documentation and examples 
+//  0.1.0  2021-01-04  arduino-CI
 
 #include "PCF8591.h"
 
@@ -23,17 +24,21 @@ PCF8591::PCF8591(const uint8_t address)
 
 
 #if defined (ESP8266) || defined(ESP32)
-void PCF8591::begin(uint8_t sda, uint8_t scl, uint8_t val)
+bool PCF8591::begin(uint8_t sda, uint8_t scl, uint8_t val)
 {
   Wire.begin(sda, scl);
+  if (!isConnected()) return false;
   analogWrite(val);
+  return true;
 }
 #endif
 
-void PCF8591::begin(uint8_t val)
+bool PCF8591::begin(uint8_t val)
 {
   Wire.begin();
+  if (!isConnected()) return false;
   analogWrite(val);
+  return true;
 }
 
 bool PCF8591::isConnected()
@@ -100,7 +105,6 @@ void PCF8591::analogRead4()
   _control &= 0b01000100;         // clear all except flags
   uint8_t channel = 0;
   _control |= channel;
-
   
   enableINCR();
   Wire.beginTransmission(_address);
