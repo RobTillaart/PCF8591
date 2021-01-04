@@ -3,28 +3,31 @@
 //    FILE: PCF8591.h
 //  AUTHOR: Rob Tillaart
 //    DATE: 2020-03-12
-// VERSION: 0.0.1
+// VERSION: 0.1.0
 // PURPOSE: I2C PCF8591 library for Arduino
-//     URL: https://github.com/RobTillaart/9581
+//     URL: https://github.com/RobTillaart/PCF8591
 //
 // HISTORY:
 // see PCF8591.cpp file
 //
 
+
 #include "Arduino.h"
 #include "Wire.h"
 
-#define PCF8591_LIB_VERSION   "0.0.1"
 
-#define PCF8591_OK             0x00
-#define PCF8591_PIN_ERROR      0x81
-#define PCF8591_I2C_ERROR      0x82
-#define PCF8591_MODE_ERROR     0x83
-#define PCF8591_CHANNEL_ERROR  0x84
+#define PCF8591_LIB_VERSION       (F("0.1.0"))
+
+#define PCF8591_OK                0x00
+#define PCF8591_PIN_ERROR         0x81
+#define PCF8591_I2C_ERROR         0x82
+#define PCF8591_MODE_ERROR        0x83
+#define PCF8591_CHANNEL_ERROR     0x84
+
 
 // INTERNAL USE ONLY
-#define PCF8591_DAC_FLAG       0x40
-#define PCF8591_INCR_FLAG      0x04
+#define PCF8591_DAC_FLAG          0x40
+#define PCF8591_INCR_FLAG         0x04
 
 class PCF8591
 {
@@ -32,11 +35,11 @@ public:
   explicit PCF8591(const uint8_t address = 0x48);
 
 #if defined (ESP8266) || defined(ESP32)
-  void  begin(uint8_t sda, uint8_t scl, uint8_t val = 0);
+  bool     begin(uint8_t sda, uint8_t scl, uint8_t val = 0);
 #endif
-  void begin(uint8_t val = 0);
+  bool     begin(uint8_t val = 0);
 
-  bool isConnected();
+  bool     isConnected();
 
   // ADC PART
   // auto increment not tested ==> use with care!
@@ -45,7 +48,7 @@ public:
   bool     isINCREnabled()  { return ((_control & PCF8591_INCR_FLAG) > 0); };
 
   uint8_t  analogRead(uint8_t channel, uint8_t mode = 0);
-  void     analogRead4();
+  uint8_t  analogRead4();
   uint8_t  lastRead(uint8_t channel) { return _adc[channel]; };
 
   // DAC PART

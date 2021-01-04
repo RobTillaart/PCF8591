@@ -13,12 +13,9 @@
   "repository":
   {
     "type": "git",
-    "url": "https://github.com/RobTillaart/Arduino.git"
+    "url": "https://github.com/RobTillaart/PCF8591.git"
   },
-  "version":"0.0.2",
+  "version":"0.1.0",
   "frameworks": "arduino",
-  "platforms": "*",
-  "export": {
-    "include": "libraries/PCF8591"
-  }
+  "platforms": "*"
 }
