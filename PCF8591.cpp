@@ -100,7 +100,7 @@ uint8_t PCF8591::analogRead(uint8_t channel, uint8_t mode)
 }
 
 
-void PCF8591::analogRead4()
+uint8_t PCF8591::analogRead4()
 {
   _control &= 0b01000100;         // clear all except flags
   uint8_t channel = 0;
@@ -112,14 +112,15 @@ void PCF8591::analogRead4()
   _error = Wire.endTransmission();  // default == 0 == PCF8591_OK
   if (_error != 0) 
   {
+    _error = PCF8591_I2C_ERROR;
     disableINCR();
-    return PCF8591_I2C_ERROR;
+    return _error;
   }
   if (Wire.requestFrom(_address, (uint8_t)5) != 5)
   {
     _error = PCF8591_I2C_ERROR;
     disableINCR();
-    return;
+    return _error;
   }
 
   Wire.read();
@@ -129,7 +130,7 @@ void PCF8591::analogRead4()
   }
   _error = PCF8591_OK;
   disableINCR();
-  return;
+  return _error;
 }
 
 

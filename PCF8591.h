@@ -48,7 +48,7 @@ public:
   bool     isINCREnabled()  { return ((_control & PCF8591_INCR_FLAG) > 0); };
 
   uint8_t  analogRead(uint8_t channel, uint8_t mode = 0);
-  void     analogRead4();
+  uint8_t  analogRead4();
   uint8_t  lastRead(uint8_t channel) { return _adc[channel]; };
 
   // DAC PART
