@@ -8,6 +8,7 @@
 
 Arduino Library for PCF8591 I2C 4 channel 8 bit ADC + 1 channel 8 bit DAC
 
+
 ## Description
 
 **warning** during tests I could overclock the chip at 650 kHz but it is only specified 
@@ -26,19 +27,21 @@ First tests shows it is 2.6 x faster than 4 individual reads.
 
 **analogRead4()** needs investigation in the future for the other modi.
 
+
 ## Interface
 
-#### generic
+### Generic
 
-- **PCF8591(const uint8_t address)** constructor with I2C address, default is 0x48
+- **PCF8591(const uint8_t address, TwoWire \*wire = &Wire)** constructor with I2C address, default is 0x48, optional set the WireN I2C bus.
 - **begin(uint8_t sda, uint8_t scl, uint8_t val = 0)** set wire pins for ESP series.   
 Also set initial value for the DAC. Returns **true** if successful.
 - **begin(uint8_t val = 0)** Set initial value for the DAC. Returns **true** if successful.
 - **isConnected()** test to see if chip can be reached.
 
-#### ADC part
 
-The PCF8591 has four 8 bit ADC channels.
+### ADC part
+
+The PCF8591 has four 8 bit ADC channels. Values = 0..255
 
 - **enableINCR()** used in analogRead4(); Could become private in the future.
 - **disableINCR()** idem.
@@ -53,16 +56,19 @@ Only 4x single ports mode supported for now, comparator modi needs investigation
 - **lastRead(uint8_t channel)** get last read value from cache.  
 This cache is filled both by **analogRead()** and **analogRead4()**. See example sketch.
 
-#### DAC PART
 
-The PCF8591 has one 8 bit DAC.
+### DAC part
+
+The PCF8591 has one 8 bit DAC. Value 0..255
 
 - **enableDAC()** switch on the analog output 
 - **disableDAC()** switch off the analog output (high impedance) Sort of energy saving mode.
 - **isDACEnabled()** check the modus operandi.
-- **analogWrite(uint8_t value = 0)** writes a value 0..255 to the DAC. CHeck datasheet for voltage.
+- **analogWrite(uint8_t value = 0)** writes a value 0..255 to the DAC. Check datasheet for voltage.
 - **lastWrite()** get last written value from cache.
-- **lastError()** always check this value after a read / write to see if it was OK (== 0)
+- **lastError()** always check this value after a read / write to see if it was OK (== 0).
+After the read the error value is reset to OK
+
 
 ## Future
 
