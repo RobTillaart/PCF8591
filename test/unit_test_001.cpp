@@ -49,10 +49,10 @@ unittest_teardown()
 unittest(test_constructor)
 {
   fprintf(stderr, "VERSION: %s\n", PCF8591_LIB_VERSION);
-  
-  PCF8591 dev(0x48);
 
+  PCF8591 dev(0x48);
   assertTrue(dev.begin());
+
   assertTrue(dev.isConnected());
   assertEqual(0, dev.lastWrite());
   assertEqual(PCF8591_OK, dev.lastError());
@@ -61,11 +61,10 @@ unittest(test_constructor)
 
 unittest(test_ADC_INCR)
 {
-  fprintf(stderr, "VERSION: %s\n", PCF8591_LIB_VERSION);
-  
   PCF8591 dev(0x48);
-
-  assertTrue(dev.isINCREnabled());
+  assertTrue(dev.begin());
+  
+  assertFalse(dev.isINCREnabled());
   dev.enableINCR();
   assertTrue(dev.isINCREnabled());
   dev.disableINCR();
@@ -75,11 +74,10 @@ unittest(test_ADC_INCR)
 
 unittest(test_DAC)
 {
-  fprintf(stderr, "VERSION: %s\n", PCF8591_LIB_VERSION);
-  
   PCF8591 dev(0x48);
+  assertTrue(dev.begin());
 
-  assertTrue(dev.isDACEnabled());
+  assertFalse(dev.isDACEnabled());
   dev.enableDAC();
   assertTrue(dev.isDACEnabled());
   dev.disableDAC();
