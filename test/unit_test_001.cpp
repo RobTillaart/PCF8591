@@ -31,10 +31,6 @@
 
 #include <ArduinoUnitTests.h>
 
-#define assertEqualFloat(arg1, arg2, arg3)  assertOp("assertEqualFloat", "expected", fabs(arg1 - arg2), compareLessOrEqual, "<=", "actual", arg3)
-// #define assertEqualINF(arg)  assertOp("assertEqualINF", "expected", INFINITY, compareEqual, "==", "actual", arg)
-// #define assertEqualNAN(arg)  assertOp("assertEqualNAN", "expected", true, compareEqual, "==", "actual", isnan(arg))
-
 
 #include "Arduino.h"
 #include "PCF8591.h"
@@ -53,11 +49,39 @@ unittest_teardown()
 unittest(test_constructor)
 {
   fprintf(stderr, "VERSION: %s\n", PCF8591_LIB_VERSION);
-  
-  PCF8591 dev(0x48);
 
+  PCF8591 dev(0x48);
   assertTrue(dev.begin());
+
   assertTrue(dev.isConnected());
+  assertEqual(0, dev.lastWrite());
+  assertEqual(PCF8591_OK, dev.lastError());
+}
+
+
+unittest(test_ADC_INCR)
+{
+  PCF8591 dev(0x48);
+  assertTrue(dev.begin());
+  
+  assertFalse(dev.isINCREnabled());
+  dev.enableINCR();
+  assertTrue(dev.isINCREnabled());
+  dev.disableINCR();
+  assertFalse(dev.isINCREnabled());
+}
+
+
+unittest(test_DAC)
+{
+  PCF8591 dev(0x48);
+  assertTrue(dev.begin());
+
+  assertFalse(dev.isDACEnabled());
+  dev.enableDAC();
+  assertTrue(dev.isDACEnabled());
+  dev.disableDAC();
+  assertFalse(dev.isDACEnabled());
 }
 
 
