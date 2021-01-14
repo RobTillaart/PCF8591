@@ -16,7 +16,7 @@
 #include "PCF8591.h"
 
 
-PCF8591::PCF8591(const uint8_t address, TwoWire *wire))
+PCF8591::PCF8591(const uint8_t address, TwoWire *wire)
 {
   if ((address < 0x48) || (address > 0x4F))
   {
