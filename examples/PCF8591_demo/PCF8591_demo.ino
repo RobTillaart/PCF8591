@@ -6,9 +6,11 @@
 //    DATE: 2020-07-22
 //     URL: https://github.com/RobTillaart/PCF8591
 
+
 #include "PCF8591.h"
 
 PCF8591 dev(0x48);
+
 
 void setup()
 {
@@ -23,6 +25,7 @@ void setup()
 #endif
   dev.begin();
 }
+
 
 void loop()
 {
@@ -57,6 +60,7 @@ void test_DAC()
   Serial.println();
 }
 
+
 void test_ADC_mode(uint8_t mode)
 {
   uint8_t channels[] = {4, 3, 3, 2 }; // channels per mode
@@ -74,5 +78,6 @@ void test_ADC_mode(uint8_t mode)
   }
   Serial.println();
 }
+
 
 // -- END OF FILE --

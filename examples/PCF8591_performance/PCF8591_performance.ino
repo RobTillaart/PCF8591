@@ -9,11 +9,13 @@
 // NOTE: output is written in markdown format of a table
 //       can be changed to tab based or comma based output
 
+
 #include "PCF8591.h"
 
 PCF8591 dev(0x48);
 
 uint32_t start, stop;
+
 
 void setup()
 {
@@ -39,9 +41,11 @@ void setup()
   test2();
 }
 
+
 void loop()
 {
 }
+
 
 /////////////////////////////////////////////////////////////////////////
 
@@ -64,6 +68,7 @@ void test1()
   Serial.println();
 }
 
+
 void test2()
 {
   Serial.println(F("| - Wire clock KHz - | - analogWrite() OK% - | - analogRead() OK% - |"));
@@ -83,6 +88,7 @@ void test2()
   Serial.println();
 }
 
+
 void test_DAC()
 {
   dev.enableDAC();
@@ -98,6 +104,7 @@ void test_DAC()
   Serial.print((stop - start) * 0.001);
 }
 
+
 void test_ADC()
 {
   volatile uint8_t x = 0;
@@ -110,6 +117,7 @@ void test_ADC()
   Serial.print(" | ");
   Serial.print((stop - start) * 0.001);
 }
+
 
 void test_DAC_error()
 {
@@ -126,6 +134,7 @@ void test_DAC_error()
   Serial.print(perc);
 }
 
+
 void test_ADC_error()
 {
   float perc = 0;
@@ -138,5 +147,6 @@ void test_ADC_error()
   Serial.print(" | ");
   Serial.print(perc);
 }
+
 
 // -- END OF FILE --
