@@ -8,17 +8,17 @@
 
 # PCF8591
 
-Arduino Library for PCF8591 I2C 4 channel 8 bit ADC + 1 channel 8 bit DAC
+Arduino Library for PCF8591 I2C 4 channel 8 bit ADC + 1 channel 8 bit DAC.
 
 
 ## Description
 
-**warning** during tests I could overclock the chip at 650 kHz but it is only specified 
+**warning** during tests I could overclock the chip up to 650 KHz but it is only specified 
 to run at 100 kHz. After getting pretty hot it broke down. 
 So overclocking is fun but not recommended.
 
 PCF8591 has one 8 bit ADC on board for 4 channels. The ADC is 8 bit and quite fast.
-At 100 kHz one gets \> 2000 reads per second for **analogRead()** and 
+At 100 KHz one gets \> 2000 reads per second for **analogRead()** and 
 \> 2000 writes per second for **analogWrite()**.  
 Note that most time is probably spend on I2C communication.
 
@@ -36,9 +36,9 @@ First tests shows it is 2.6 x faster than 4 individual reads.
 
 - **PCF8591(const uint8_t address, TwoWire \*wire = &Wire)** constructor with I2C address, 
 default is 0x48, optional set the WireN I2C bus.
-- **bool begin(uint8_t sda, uint8_t scl, uint8_t val = 0)** set wire pins for ESP series.   
+- **bool begin(uint8_t sda, uint8_t scl, uint8_t value = 0)** set wire pins for ESP series.   
 Also set initial value for the DAC. Returns **true** if successful.
-- **bool begin(uint8_t val = 0)** Set initial value for the DAC. Returns **true** if successful.
+- **bool begin(uint8_t value = 0)** Set initial value for the DAC. Returns **true** if successful.
 - **bool isConnected()** test to see if chip can be reached.
 
 
@@ -89,5 +89,6 @@ See examples.
 - **analogRead4()** needs investigation for the other modi. 
   - Does it work?  
   - Is it user understandable?
+  - good example...
 - ...
 
