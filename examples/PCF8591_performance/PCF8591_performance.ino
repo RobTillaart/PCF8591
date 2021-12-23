@@ -1,12 +1,12 @@
 //
 //    FILE: PCF8591_demo.ino
 //  AUTHOR: Rob Tillaart
-// VERSION: 0.1.0
 // PURPOSE: demo
 //    DATE: 2020-07-22
 //     URL: https://github.com/RobTillaart/PCF8591
-
+//
 // NOTE: output is written in markdown format of a table
+//       (so oeasy to include in the readme.md ;)
 //       can be changed to tab based or comma based output
 
 
@@ -150,3 +150,4 @@ void test_ADC_error()
 
 
 // -- END OF FILE --
+

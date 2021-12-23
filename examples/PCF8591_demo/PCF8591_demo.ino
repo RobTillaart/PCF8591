@@ -1,7 +1,6 @@
 //
 //    FILE: PCF8591_demo.ino
 //  AUTHOR: Rob Tillaart
-// VERSION: 0.1.0
 // PURPOSE: demo
 //    DATE: 2020-07-22
 //     URL: https://github.com/RobTillaart/PCF8591
@@ -81,3 +80,4 @@ void test_ADC_mode(uint8_t mode)
 
 
 // -- END OF FILE --
+
