@@ -56,7 +56,8 @@ The PCF8591 has four 8 bit ADC channels. Values = 0..255.
 Could become private in the future.
 - **void disableINCR()** idem.
 - **bool isINCREnabled()** idem.
-- **uint8_t analogRead(uint8_t channel, uint8_t mode = 0)** read one of the 4 analogue ports.  
+- **uint8_t analogRead(uint8_t channel, uint8_t mode = 0)** returns value of the analogue channel.
+Return 0 in case of an error, so check **lastError()** to be verify validity.
 Default mode is PCF8591_FOUR_SINGLE_CHANNEL, see table below.
 For details comparator modes see datasheet figure 4 page 6.
 - **uint8_t analogRead4()** read all 4 channels in one call.
@@ -113,8 +114,6 @@ Note, this is a real voltage not a PWM signal like **analogWrite()** on an UNO.
 
 - **int lastError()** always check this value after a read / write to see if it was OK (== 0).
 After the read the error value is reset to OK.
-
-To elaborate
 
 |  Error code             |  Value  |  Notes  |
 |:------------------------|:-------:|:--------|
