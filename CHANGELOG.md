@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - add defines for 4 different modi
 - add four comparator functions (wrappers).
 - update readme.md
+- update keywords.txt
 - update GitHub actions
 - update license 2023
 - minor edits
@@ -30,7 +31,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - minor edits
 
 ## [0.1.1] - 2021-01-14
-- added WireN 
+- added WireN
 - improve error handling.
 
 ## [0.1.0] - 2021-01-04

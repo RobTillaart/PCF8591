@@ -64,7 +64,7 @@ bool PCF8591::isConnected()
 {
   _wire->beginTransmission(_address);
   _error = _wire->endTransmission();  //  default == 0 == PCF8591_OK
-  return( _error == PCF8591_OK);
+  return (_error == PCF8591_OK);
 }
 
 
@@ -125,13 +125,13 @@ uint8_t PCF8591::analogRead(uint8_t channel, uint8_t mode)
   //        Page 8 datasheet.
   _wire->beginTransmission(_address);
   _wire->write(_control);
-  _error = _wire->endTransmission();  // default == 0 == PCF8591_OK
+  _error = _wire->endTransmission();  //  default == 0 == PCF8591_OK
   if (_error != 0) return PCF8591_I2C_ERROR;
 
   if (_wire->requestFrom(_address, (uint8_t)2) != 2)
   {
     _error = PCF8591_I2C_ERROR;
-    return _adc[channel];          // known last value
+    return _adc[channel];          //  return last known value
   }
   _wire->read();
   _adc[channel] = _wire->read();
@@ -150,7 +150,7 @@ uint8_t PCF8591::analogRead4()
   enableINCR();
   _wire->beginTransmission(_address);
   _wire->write(_control);
-  _error = _wire->endTransmission();  // default == 0 == PCF8591_OK
+  _error = _wire->endTransmission();  //  default == 0 == PCF8591_OK
   if (_error != 0)
   {
     _error = PCF8591_I2C_ERROR;

@@ -28,8 +28,6 @@ The library only supports it for the mode 0 (plain ADC, no differential).
 The **lastRead()** function is needed to get access to the values.
 First tests shows it is 2.6 x faster than 4 individual reads.
 
-**analogRead4()** needs investigation in the future for the other modi.
-
 
 ## Interface
 
@@ -38,9 +36,9 @@ First tests shows it is 2.6 x faster than 4 individual reads.
 ```
 
 
-#### Generic
+#### Constructor
 
-- **PCF8591(const uint8_t address, TwoWire \*wire = &Wire)** constructor with I2C address.
+- **PCF8591(const uint8_t address = 0x48, TwoWire \*wire = &Wire)** constructor with I2C address.
 Default is 0x48, optional set the WireN I2C bus.
 - **bool begin(uint8_t sda, uint8_t scl, uint8_t value = 0)** set wire pins for ESP series.
 Also set initial value for the DAC. 
@@ -108,7 +106,7 @@ The PCF8591 has one 8 bit DAC. output value 0..255 == 0..Vref Volts (datasheet).
 - **bool isDACEnabled()** check the modus operandi.
 - **bool analogWrite(uint8_t value = 0)** writes a value 0..255 to the DAC. Check datasheet for voltage.
 Note, this is a real voltage not a PWM signal like **analogWrite()** on an UNO.
-- **uint8_t lastWrite()** get last written value from cache.
+- **uint8_t lastWrite()** get last value written (from cache).
 
 
 #### Error codes

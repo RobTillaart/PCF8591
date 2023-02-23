@@ -33,6 +33,7 @@ class PCF8591
 public:
   explicit PCF8591(const uint8_t address = 0x48, TwoWire *wire = &Wire);
 
+  //       set initial value for DAC, default 0
 #if defined (ESP8266) || defined(ESP32)
   bool     begin(uint8_t sda, uint8_t scl, uint8_t value = 0);
 #endif
@@ -68,7 +69,6 @@ public:
   void     enableDAC();
   void     disableDAC();
   bool     isDACEnabled();
-
   bool     analogWrite(uint8_t value = 0);  //  returns true on success.
   uint8_t  lastWrite();                     //  returns last successful write
 
