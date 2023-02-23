@@ -3,7 +3,7 @@
 //    FILE: PCF8591.h
 //  AUTHOR: Rob Tillaart
 //    DATE: 2020-03-12
-// VERSION: 0.1.3
+// VERSION: 0.2.0
 // PURPOSE: I2C PCF8591 library for Arduino
 //     URL: https://github.com/RobTillaart/PCF8591
 
@@ -12,14 +12,20 @@
 #include "Wire.h"
 
 
-#define PCF8591_LIB_VERSION             (F("0.1.3"))
+#define PCF8591_LIB_VERSION                 (F("0.2.0"))
 
-#define PCF8591_OK                      0x00
-#define PCF8591_PIN_ERROR               0x81
-#define PCF8591_I2C_ERROR               0x82
-#define PCF8591_MODE_ERROR              0x83
-#define PCF8591_CHANNEL_ERROR           0x84
-#define PCF8591_ADDRESS_ERROR           0x85
+#define PCF8591_OK                          0x00
+#define PCF8591_PIN_ERROR                   0x81
+#define PCF8591_I2C_ERROR                   0x82
+#define PCF8591_MODE_ERROR                  0x83
+#define PCF8591_CHANNEL_ERROR               0x84
+#define PCF8591_ADDRESS_ERROR               0x85
+
+//  datasheet figure 4 page 6
+#define PCF8591_FOUR_SINGLE_CHANNEL         0x00  //  default
+#define PCF8591_THREE_DIFFERENTIAL          0x01
+#define PCF8591_MIXED                       0x02
+#define PCF8591_TWO_DIFFERENTIAL            0x03
 
 
 class PCF8591
@@ -42,11 +48,20 @@ public:
   bool     isINCREnabled();
 
   //       analogRead() returns the value.
-  uint8_t  analogRead(uint8_t channel, uint8_t mode = 0); 
-  //       analogRead4() returns PCF8591_OK or an error code.  
-  uint8_t  analogRead4();  
+  //       mode 0 = PCF8591_FOUR_SINGLE_CHANNEL
+  uint8_t  analogRead(uint8_t channel, uint8_t mode = 0);
+  //       analogRead4() returns PCF8591_OK or an error code.
+  uint8_t  analogRead4();
   //       access the 4 channels read with analogRead4()
   uint8_t  lastRead(uint8_t channel);
+
+  //       datasheet par 8.2 figure 4
+  //       not for PCF8591_MIXED mode.
+  //       comparator calls need testing.
+  int      readComparator_01();  //  channel 0  mode 3
+  int      readComparator_23();  //  channel 1  mode 3
+  int      readComparator_03();  //  channel 0  mode 1
+  int      readComparator_13();  //  channel 1  mode 1
 
 
   //       DAC PART

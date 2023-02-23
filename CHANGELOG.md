@@ -6,12 +6,22 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 
+## [0.2.0] - 2023-02-23
+- fix#10 analogRead() for differential modi.
+- add defines for 4 different modi
+- add four comparator functions (wrappers).
+- update readme.md
+- update GitHub actions
+- update license 2023
+- minor edits
+
+----
+
 ## [0.1.3] - 2022-11-21
 - add RP2040 to build-CI
 - add changelog.md
 - move code from .h to .cpp
 - update unit test
-
 
 ## [0.1.2] - 2021-12-23
 - update library.json
