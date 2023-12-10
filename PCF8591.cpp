@@ -50,7 +50,7 @@ bool PCF8591::isConnected()
 }
 
 
-bool PCF8591::getAddress()
+uint8_t PCF8591::getAddress()
 {
   return _address;
 }
