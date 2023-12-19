@@ -66,8 +66,8 @@ public:
   void     enableDAC();
   void     disableDAC();
   bool     isDACEnabled();
-  bool     analogWrite(uint8_t value = 0);  //  returns true on success.
-  uint8_t  lastWrite();                     //  returns last successful write
+  bool     write(uint8_t value = 0);   //  returns true on success.
+  uint8_t  lastWrite();                //  returns last successful write
 
   //       ERROR HANDLING
   int      lastError();
@@ -81,6 +81,7 @@ private:
   int      _error;
 
   TwoWire* _wire;
+
 };
 
 
